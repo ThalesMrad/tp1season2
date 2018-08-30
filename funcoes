@@ -29,6 +29,7 @@ int imprimelistaordenada(Lista* li){
       li->dados[i] = li->dados[j];
       li->dados[j] = aux;
     }
+    printf("%s, %d, Locações: %d",li->dados[i].titulo,li->dados[i].ano,li->dados[i].locacoes);
   }
   return 0;
 }
