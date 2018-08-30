@@ -1,0 +1,22 @@
+int buscar_filme_ano(Lista* li,int ano){
+  int i;
+  for(i=0;i<li->qtd;i++){
+    if(li->dados[i].ano == ano)
+    printf("%s, %d\n",li->dados[i].nome.ano);
+  }
+  return 0;
+}
+
+int buscar_filme_titulo(Lista* li,char* titulo){
+  int i;
+  for(i=0;i<li->qtd;i++){
+    if(strcmp(li->dados[i].titulo,titulo)==0){
+        printf("%s, %d\n",li->dados[i].nome.ano);
+        break;
+    }
+  }
+  return 0;
+}
+int  aluga(Filme* f){
+
+}
