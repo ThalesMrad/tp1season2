@@ -20,3 +20,15 @@ int buscar_filme_titulo(Lista* li,char* titulo){
 int  aluga(Filme* f){
 
 }
+int imprimelistaordenada(Lista* li){
+  Filmes aux;
+  for(int i=0;i<li->qtd;i++){
+    for(int j=0;j<li->qtd;j++){
+      if(li->dados[i].locacoes <= li->dados[j].locacoes)
+      aux = li->dados[i];
+      li->dados[i] = li->dados[j];
+      li->dados[j] = aux;
+    }
+  }
+  return 0;
+}
