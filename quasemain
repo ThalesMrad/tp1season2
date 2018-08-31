@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 100
+
+  struct filmes{
+    char titulo[50];
+    int ano;
+    int locacoes;
+  };
+  typedef struct filmes Filmes;
+
+  struct lista{
+    int qtd;
+    Filmes dados[MAX];
+  };
+  typedef struct lista Lista;
+
+  Lista* cria_lista(){
+    Lista *li;
+    li = (Lista*) malloc(sizeof(struct lista));
+    if(li != NULL)
+        li->qtd = 0;
+    return li;
+  }
+
+  void libera_lista(Lista* li){
+  free(li);
+  }
+
+
+  int salva_na_lista(Lista *li,Filmes temporario){
+    li->dados[li->qtd] = temporario;
+    li->qtd++;
+    return 0;
+  }
+  int buscar_filme_ano(Lista* li,int ano){
+    int i;
+    for(i=0;i<li->qtd;i++){
+      if(li->dados[i].ano == ano)
+      printf("%s, %d\n",li->dados[i].titulo,ano);
+    }
+    return 0;
+  }
+
+  int buscar_filme_titulo(Lista* li,char* titulo){
+    int i;
+    for(i=0;i<li->qtd;i++){
+      if(strcmp(li->dados[i].titulo,titulo)==0){
+          printf("%s, %d\n",li->dados[i].titulo,li->dados[i].ano);
+          break;
+      }
+    }
+    return 0;
+  }
+  void  aluga(Filmes* f){
+        f->locacoes++;
+  }
+  void imprimelistaordenada(Lista* li){
+    Filmes aux;
+    for(int i=0;i<li->qtd;i++){
+      for(int j=0;j<li->qtd;j++){
+        if(li->dados[i].locacoes <= li->dados[j].locacoes)
+        aux = li->dados[i];
+        li->dados[i] = li->dados[j];
+        li->dados[j] = aux;
+      }
+      printf("%s, %d, Locações: %d",li->dados[i].titulo,li->dados[i].ano,li->dados[i].locacoes);
+    }
+  }
+int main(){
+  FILE*arq;
+  arq = fopen("filmes.txt","r");
+  Lista* li = cria_lista();
+  Filmes temporario;
+  int i,j,opcao;
+  char c = 'a';
+
+  for(i=0;c!=EOF;i++){
+    for(j=0;c!=',';j++){
+        c = fgetc(arq);
+      temporario.titulo[j] == c;
+    }
+    fscanf(arq,"%d",temporario.ano);
+    c = fgetc(arq);
+  salva_na_lista(li,temporario);
+}
+
+  printf("LOCADORA LOCAL A DORA\n");
+  printf("O que deseja fazer?\n");
+  printf("[1]Buscar um filme pelo ano\n[2]Buscar um filme pelo título\n");
+  printf("[3]Salvar um aluguel\n[4]Mostrar o filme por nº de locações\n");
+  printf("[5]Sair\n");
+  scanf("%d",&opcao);
+
+  if(opcao == 1){
+    int ano;
+    printf("Digite o ano desejado\n");
+    scanf("%d",ano);
+    buscar_filme_ano(li,ano);
+  }
+  if(opcao == 2){
+    char titulo;
+    printf("Digite o titulo do filme\n");
+    scanf("%s",&titulo);
+    buscar_filme_titulo(li,titulo);
+  }
+  if(opcao == 3){
+    char alugado;
+    printf("Qual titulo do filme que foi alugado?\n");
+    scanf("%s",&alugado);
+    for(i=0;i<=li->qtd;i++){
+      if(strcmp(li->dados[i].titulo,alugado)==0){
+          aluga(&li->dados[i]);
+          break;
+        }
+    }
+  }
+  if(opcao == 4){
+    imprimelistaordenada(li);
+  }
+  if(opcao == 5){
+
+  }
+
+
+  libera_lista(li);
+  return 0;
+}
