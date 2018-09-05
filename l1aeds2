@@ -1,0 +1,58 @@
+Lista 1 _ Aeds 2
+
+Questão 2)
+Imprime a Matriz de tamanho 3x4 e que contem os números ordenados de 1 a 12.
+
+Questão 3)
+a)p++;
+Acrescenta uma unidade ao conteudo da variável p.
+b)(*p)++;
+Acrescenta uma unidade ao endereço da variável p (anda uma unidade na memória);
+c)*(p++);
+Acessa o endereço de memória de p acrescido de uma unidade.
+
+Questão 4) *(p+10);
+Está acessando o endereço de memória de p acrescido de 10 unidades.
+
+Questão 5)
+
+
+Questão 6) y = 4 no final do programa.
+
+#include <stdio.h>
+int main()
+{
+int y, *p, x;
+y = 0;      // Atribui o valor 0 a variável y;
+p = &y; //  Atribui o endereço de memória de y ao ponteiro p;
+x = *p; // Atribui o valor de y (apontado por p) a variável x;
+x = 4; //  Atribui o valor 4 a variável x;
+(*p)++; //  Acrecenta um ao valor de y (apontado por p);
+x--;// Decrece um ao valor de x;
+(*p) += x; // Soma o valor de y ao de x;
+printf ("y = %d\n", y); // Mostra o valor de y na tela
+return(0);
+}
+
+Questão 7)
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int *i,*j;
+  float **matrx;
+  matrx = (float**)malloc(50*sizeof(float*));
+  for(*i=0;*i<50;*i++){
+   *(matrx+(*i)) = (float*)malloc(50*sizeof(float));
+  }
+  for(*i=0;*i<50;*i++)
+    for(*j=0;*j<50;*j++)
+      matrx[*i][*j] = 0.0;
+      return 0;
+}
+
+Questão 8)
+
+
+Questão 9)
+*(M1 + 2)
